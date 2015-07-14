@@ -10,7 +10,6 @@
 #import "detailViewController.h"
 #import "addViewController.h"
 
-
 @interface mainTableViewController ()
 @property (nonatomic, strong) NSMutableArray *dictArray;
 @end
@@ -39,10 +38,8 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   // NSLog(@" self.dictArray.count %@",self.dictArray);
     return self.dictArray.count;
 }
 
@@ -58,22 +55,18 @@
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    
     cell.textLabel.text = [tempD objectForKey:@"name"];
     cell.detailTextLabel.text = [tempD objectForKey:@"date"];
-
     return cell;
 }
 
 #pragma mark - Table view Delegates
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    //Done from StoryBoard
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -85,14 +78,12 @@
         detailVC.reminderCompletionDelegate = self;
         [detailVC viewDidLoad];
     }
-    
     else if ([segue.identifier isEqualToString:@"mainToAddId"])
-        {
-            UINavigationController *navVC = (UINavigationController *)segue.destinationViewController;
-            addViewController *addTVC = [navVC.viewControllers firstObject];
-            addTVC.savingRemainderDelegate = self;
-        }
+    {
+        UINavigationController *navVC = (UINavigationController *)segue.destinationViewController;
+        addViewController *addTVC = [navVC.viewControllers firstObject];
+        addTVC.savingRemainderDelegate = self;
+    }
 }
-
 
 @end

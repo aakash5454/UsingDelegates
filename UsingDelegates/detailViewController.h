@@ -10,7 +10,6 @@
 #import "remainderCompletionProtocol.h"
 
 @interface detailViewController : UIViewController
-
 @property (nonatomic, weak) id<reminderCompletionProtocol>  reminderCompletionDelegate;
 @property (nonatomic, strong) NSMutableArray *dictArray;
 

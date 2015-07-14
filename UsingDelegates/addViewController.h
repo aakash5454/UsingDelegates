@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "savingRemainderProtocol.h"
 
-
 @interface addViewController : UIViewController
 
 @property (nonatomic, weak) id<savingRemainderProtocol> savingRemainderDelegate;

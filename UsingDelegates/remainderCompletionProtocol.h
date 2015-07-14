@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol reminderCompletionProtocol <NSObject>
-
+@required
 -(void)addingCheckMark: (NSArray*) items; 
-
 @end

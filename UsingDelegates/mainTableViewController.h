@@ -10,13 +10,7 @@
 #import "savingRemainderProtocol.h"
 #import "remainderCompletionProtocol.h"
 
-//@protocol savingRemainderProtocol;
-//@protocol remainderCompletionProtocol;
-
-
-
 @interface mainTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, savingRemainderProtocol, reminderCompletionProtocol>
-
 
 @property (nonatomic, strong) NSString *nameString;
 @property (nonatomic, strong) NSString *dateString;
