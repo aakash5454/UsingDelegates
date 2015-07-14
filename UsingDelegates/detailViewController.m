@@ -15,35 +15,33 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *namesTextbox;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextbox;
-- (IBAction)cancelButtonTapped:(id)sender;
 
+- (IBAction)cancelButtonTapped:(id)sender;
 @end
 
-static NSIndexPath *indexPath;
+NSMutableDictionary *tempDictionary;
 @implementation detailViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self loadData:0];
+    [self loadData:self.myIndexPath.row];
+    tempDictionary = [[NSMutableDictionary alloc]init];
 }
 
--(void)loadData: (id) sender
+-(void)loadData: (NSInteger) fromIndexPath
 {
-    indexPath = (NSIndexPath*) sender;
-    NSMutableDictionary *tempD = [[NSMutableDictionary alloc]init];
-    tempD = [self.dictArray objectAtIndex:indexPath.row];
-    self.namesTextbox.text = [tempD objectForKey:@"name"];
-    self.descriptionTextbox.text = [tempD objectForKey:@"description"];
+    tempDictionary = [self.dictArray objectAtIndex:fromIndexPath];
+    self.namesTextbox.text = [tempDictionary objectForKey:@"name"];
+    self.descriptionTextbox.text = [tempDictionary objectForKey:@"description"];
 }
 
 - (IBAction)completeButtonTapped:(id)sender
 {
-    NSMutableDictionary *tempD = [[NSMutableDictionary alloc]init];
-    tempD = [self.dictArray objectAtIndex:indexPath.row];
-    [tempD setObject:@"YES" forKey:@"status"];
-    NSLog(@"the new dict is: %@", tempD);
-    [self.dictArray replaceObjectAtIndex:indexPath.row withObject:tempD];
+    tempDictionary = [self.dictArray objectAtIndex:self.myIndexPath.row];
+    [tempDictionary setObject:@"YES" forKey:@"status"];
+    NSLog(@"the new dict is: %@", tempDictionary);
+    [self.dictArray replaceObjectAtIndex:self.myIndexPath.row withObject:tempDictionary];
     [self.reminderCompletionDelegate addingCheckMark:self.dictArray];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -52,4 +50,5 @@ static NSIndexPath *indexPath;
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

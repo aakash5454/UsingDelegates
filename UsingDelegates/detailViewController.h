@@ -12,5 +12,5 @@
 @interface detailViewController : UIViewController
 @property (nonatomic, weak) id<reminderCompletionProtocol>  reminderCompletionDelegate;
 @property (nonatomic, strong) NSMutableArray *dictArray;
-
+@property (nonatomic, strong) NSIndexPath *myIndexPath;
 @end

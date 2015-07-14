@@ -19,13 +19,21 @@
 - (IBAction)CancelTapped:(id)sender;
 - (IBAction)saveTapped:(id)sender;
 
+
 @end
-
+NSMutableDictionary *tempD;
 @implementation addViewController
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    tempD = [[NSMutableDictionary alloc]init];
+    self.dictArray = [[NSMutableArray alloc]init];
 
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
 }
 
 -(NSMutableDictionary*) createAnRemainderDictionarywithName: (NSString*)name withDate:(NSString*)date withDescription:(NSString*)description andStatus:(NSString*)status
@@ -46,14 +54,14 @@
 
 - (IBAction)saveTapped:(id)sender
 {
-    NSMutableDictionary *tempD = [[NSMutableDictionary alloc]init];
+    
     tempD = [self createAnRemainderDictionarywithName:self.nameTextBox.text withDate:self.dateTextBox.text withDescription:self.
              descriptionTextBox.text andStatus:@"No"];
-    NSLog(@"tempD :%@", tempD);
-    self.dictArray = [[NSMutableArray alloc]init];
-    [self.dictArray addObject:tempD];
+//    NSLog(@"tempD :%@", tempD);
+//    
+//    [self.dictArray addObject:tempD];
     NSLog(@"self.dictArray: %@", self.dictArray);
-    [self.savingRemainderDelegate addingNameInDictArray:self.dictArray];
+    [self.savingRemainderDelegate addingNameInDictArray:tempD];
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }

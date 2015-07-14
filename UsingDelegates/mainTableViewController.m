@@ -13,7 +13,7 @@
 @interface mainTableViewController ()
 @property (nonatomic, strong) NSMutableArray *dictArray;
 @end
-
+NSIndexPath *ClickedindexPath;
 @implementation mainTableViewController
 
 #pragma mark - Other Methods
@@ -21,12 +21,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.dictArray = [[NSMutableArray alloc]init];
 }
 
 #pragma mark - Protocol Methods
--(void)addingNameInDictArray: (NSMutableArray*) dictArray
+-(void)addingNameInDictArray: (NSMutableDictionary*) dict
 {
-    self.dictArray = dictArray;
+    //self.dictArray = dictArray;   //Dont replace, add object.
+    [self.dictArray addObject:dict];
     [self.tableView reloadData];
     NSLog(@"mainTableVieController self.dictArray:%@", self.dictArray);
 }
@@ -72,11 +74,16 @@
 {
     if ([segue.identifier isEqualToString: @"mainToDetailId"])
     {
+        UITableViewCell *cell = (UITableViewCell*) sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSLog(@"%@",indexPath.description);
         UINavigationController *navVC = (UINavigationController *)segue.destinationViewController;
         detailViewController *detailVC = [navVC.viewControllers firstObject];
         detailVC.dictArray = self.dictArray;
-        detailVC.reminderCompletionDelegate = self;
-        [detailVC viewDidLoad];
+        detailVC.myIndexPath = indexPath;
+        NSLog(@"%@", indexPath);
+        detailVC.reminderCompletionDelegate = self;  // Q: //Who is delagating who?
+        //[detailVC viewDidLoad];
     }
     else if ([segue.identifier isEqualToString:@"mainToAddId"])
     {
