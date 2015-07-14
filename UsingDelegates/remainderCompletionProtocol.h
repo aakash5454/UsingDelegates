@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol remainderCompletionProtocol <NSObject>
+@protocol reminderCompletionProtocol <NSObject>
 
 -(void)addingCheckMark: (NSArray*) items; 
 

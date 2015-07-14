@@ -11,7 +11,7 @@
 
 @interface addViewController ()
 
-@property (nonatomic, strong) NSMutableArray *namesArray;
+@property (nonatomic, strong) NSMutableArray *dictArray;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextBox;
 @property (weak, nonatomic) IBOutlet UITextField *dateTextBox;
@@ -27,9 +27,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+   // [self.dictArray addObject:[self createAnRemainderDictionarywithName:self.nameTextBox.text withDate:self.dateTextBox.text withDescription:self.descriptionTextBox.text andStatus:status]];
+    
 }
 
+-(NSMutableDictionary*) createAnRemainderDictionarywithName: (NSString*)name withDate:(NSString*)date withDescription:(NSString*)description andStatus:(NSString*)status
+{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    
+    [dict setObject:name forKey:@"name"];
+    [dict setObject:date forKey:@"date"];
+    [dict setObject:description forKey:@"description"];
+    [dict setObject:status forKey:@"status"];
+    
+    return dict;
+}
+
+-(void) savDataInDictionary
+{
+    
+}
 #pragma mark - IBActions
 - (IBAction)CancelTapped:(id)sender
 {
@@ -38,12 +56,18 @@
 
 - (IBAction)saveTapped:(id)sender
 {
-    self.namesArray = [[NSMutableArray alloc]init];
-    [self.namesArray addObject:self.nameTextBox.text];
-    [self.savingRemainderDelegate addingNameInNamesArray:self.namesArray];
+    NSMutableDictionary *tempD = [[NSMutableDictionary alloc]init];
+    tempD = [self createAnRemainderDictionarywithName:self.nameTextBox.text withDate:self.dateTextBox.text withDescription:self.
+             descriptionTextBox.text andStatus:@"No"];
+    NSLog(@"tempD :%@", tempD);
+    
+    self.dictArray = [[NSMutableArray alloc]init];
+    [self.dictArray addObject:tempD];
+    NSLog(@"self.dictArray: %@", self.dictArray);
+    
+    
+    [self.savingRemainderDelegate addingNameInDictArray:self.dictArray];
     [self dismissViewControllerAnimated:YES completion:nil];
-    //~~~> WHy cannot I pass information using classic segues?
-    // [self performSegueWithIdentifier:@"mainToAddId" sender:self];
     
 }
 

@@ -12,6 +12,6 @@
 
 @required
 
--(void)addingNameInNamesArray: (NSArray*) namesArray;
+-(void)addingNameInDictArray: (NSArray*) namesArray;
 
 @end

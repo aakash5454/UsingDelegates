@@ -15,7 +15,7 @@
 
 
 
-@interface mainTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, savingRemainderProtocol, remainderCompletionProtocol>
+@interface mainTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, savingRemainderProtocol, reminderCompletionProtocol>
 
 
 @property (nonatomic, strong) NSString *nameString;

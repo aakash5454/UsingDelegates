@@ -12,7 +12,7 @@
 
 
 @interface mainTableViewController ()
-@property (nonatomic, strong) NSMutableArray *namesArray;
+@property (nonatomic, strong) NSMutableArray *dictArray;
 @end
 
 @implementation mainTableViewController
@@ -25,18 +25,16 @@
 }
 
 #pragma mark - Protocol Methods
--(void)addingNameInNamesArray: (NSMutableArray*) namesArray
+-(void)addingNameInDictArray: (NSMutableArray*) dictArray
 {
-    self.namesArray = namesArray;
-//~~~~~> q:1 How to decide where to reload data? This was like trial and error.
-//~~~~>  q:2 how can I access self.tableView in this method? I have as such not declared a table view property.
+    self.dictArray = dictArray;
     [self.tableView reloadData];
-    NSLog(@"mainTableVieController self.namesArray:%@", self.namesArray);
+    NSLog(@"mainTableVieController self.dictArray:%@", self.dictArray);
 }
 
 -(void)addingCheckMark: (NSMutableArray*) items
 {
-    self.namesArray = items;
+    self.dictArray = items;
     [self.tableView reloadData];
 }
 
@@ -44,28 +42,32 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    NSLog(@"%lu", (unsigned long)self.namesArray.count);
-    return self.namesArray.count;
+   // NSLog(@" self.dictArray.count %@",self.dictArray);
+    return self.dictArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     static NSString *cellIdentifier = @"cellidentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-   // Configure the cell...
-   // NSLog(@"self.namesArray in cell for row at indexpath %@", self.namesArray);
+    NSMutableDictionary *tempD = [[NSMutableDictionary alloc]init];
+    tempD = [self.dictArray objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = self.namesArray[indexPath.row];
-    cell.detailTextLabel.text = self.dateString;
+    if ([[tempD objectForKey:@"status"] isEqualToString:@"YES"])
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    
+    cell.textLabel.text = [tempD objectForKey:@"name"];
+    cell.detailTextLabel.text = [tempD objectForKey:@"date"];
+
     return cell;
 }
 
 #pragma mark - Table view Delegates
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // ~~~> verify: No need to write this because segue written from story board.
-    //[self performSegueWithIdentifier:@"mainToDetailId" sender:nil];
     
 }
 
@@ -79,7 +81,8 @@
     {
         UINavigationController *navVC = (UINavigationController *)segue.destinationViewController;
         detailViewController *detailVC = [navVC.viewControllers firstObject];
-        detailVC.namesArray = self.namesArray;
+        detailVC.dictArray = self.dictArray;
+        detailVC.reminderCompletionDelegate = self;
         [detailVC viewDidLoad];
     }
     
