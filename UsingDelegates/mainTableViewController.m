@@ -25,10 +25,9 @@ NSIndexPath *ClickedindexPath;
 }
 
 #pragma mark - Protocol Methods
--(void)addingNameInDictArray: (NSMutableDictionary*) dict
+-(void)addingNameInDictArray:(Remainder*)remainder
 {
-    //self.dictArray = dictArray;   //Dont replace, add object.
-    [self.dictArray addObject:dict];
+    [self.dictArray addObject:remainder];
     [self.tableView reloadData];
     NSLog(@"mainTableVieController self.dictArray:%@", self.dictArray);
 }
@@ -49,16 +48,13 @@ NSIndexPath *ClickedindexPath;
 
     static NSString *cellIdentifier = @"cellidentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    NSMutableDictionary *tempD = [[NSMutableDictionary alloc]init];
-    tempD = [self.dictArray objectAtIndex:indexPath.row];
-    
-    if ([[tempD objectForKey:@"status"] isEqualToString:@"YES"])
+    self.remainder = [self.dictArray objectAtIndex:indexPath.row];
+    if ([self.remainder.status isEqualToString:@"YES"])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    cell.textLabel.text = [tempD objectForKey:@"name"];
-    cell.detailTextLabel.text = [tempD objectForKey:@"date"];
+    cell.textLabel.text = self.remainder.name;
+    cell.detailTextLabel.text = self.remainder.date;
     return cell;
 }
 
@@ -81,9 +77,9 @@ NSIndexPath *ClickedindexPath;
         detailViewController *detailVC = [navVC.viewControllers firstObject];
         detailVC.dictArray = self.dictArray;
         detailVC.myIndexPath = indexPath;
-        NSLog(@"%@", indexPath);
-        detailVC.reminderCompletionDelegate = self;  // Q: //Who is delagating who?
-        //[detailVC viewDidLoad];
+
+        detailVC.remainder = self.remainder;
+        detailVC.savingRemainderDelegate = self;  // Q: //Who is delagating who?
     }
     else if ([segue.identifier isEqualToString:@"mainToAddId"])
     {

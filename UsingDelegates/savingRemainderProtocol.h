@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Remainder.h"
 
 @protocol savingRemainderProtocol <NSObject>
 
-@required
 
--(void)addingNameInDictArray: (NSMutableDictionary*) namesArray;
+-(void)addingNameInDictArray:(Remainder*)remainder;
+
+-(void)addingCheckMark: (NSArray*) items;
 
 @end

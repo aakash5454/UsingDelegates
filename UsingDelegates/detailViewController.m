@@ -9,7 +9,8 @@
 //  //~~~> Q: Ask sir about dealing with indexPath approach?
 
 #import "detailViewController.h"
-#import "remainderCompletionProtocol.h"
+#import "savingRemainderProtocol.h"
+#import "Remainder.h"
 
 @interface detailViewController ()
 
@@ -17,32 +18,30 @@
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextbox;
 
 - (IBAction)cancelButtonTapped:(id)sender;
+
 @end
 
-NSMutableDictionary *tempDictionary;
 @implementation detailViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self loadData:self.myIndexPath.row];
-    tempDictionary = [[NSMutableDictionary alloc]init];
 }
 
 -(void)loadData: (NSInteger) fromIndexPath
 {
-    tempDictionary = [self.dictArray objectAtIndex:fromIndexPath];
-    self.namesTextbox.text = [tempDictionary objectForKey:@"name"];
-    self.descriptionTextbox.text = [tempDictionary objectForKey:@"description"];
+    self.remainder = [self.dictArray objectAtIndex:fromIndexPath];
+    self.namesTextbox.text = self.remainder.name;
+    self.descriptionTextbox.text = self.remainder.date;
 }
 
 - (IBAction)completeButtonTapped:(id)sender
 {
-    tempDictionary = [self.dictArray objectAtIndex:self.myIndexPath.row];
-    [tempDictionary setObject:@"YES" forKey:@"status"];
-    NSLog(@"the new dict is: %@", tempDictionary);
-    [self.dictArray replaceObjectAtIndex:self.myIndexPath.row withObject:tempDictionary];
-    [self.reminderCompletionDelegate addingCheckMark:self.dictArray];
+    self.remainder = [self.dictArray objectAtIndex:self.myIndexPath.row];
+    self.remainder.status = @"YES";
+    [self.dictArray replaceObjectAtIndex:self.myIndexPath.row withObject:self.remainder];
+    [self.savingRemainderDelegate addingCheckMark:self.dictArray];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
