@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		335EAB251B5A3F4600ED6BF0 /* Remainder.m in Sources */ = {isa = PBXBuildFile; fileRef = 335EAB241B5A3F4600ED6BF0 /* Remainder.m */; };
 		33AFA50B1B5211AE00537C29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AFA50A1B5211AE00537C29 /* main.m */; };
 		33AFA50E1B5211AE00537C29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AFA50D1B5211AE00537C29 /* AppDelegate.m */; };
 		33AFA5141B5211AE00537C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33AFA5121B5211AE00537C29 /* Main.storyboard */; };
@@ -29,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		335EAB231B5A3F4600ED6BF0 /* Remainder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Remainder.h; sourceTree = "<group>"; };
+		335EAB241B5A3F4600ED6BF0 /* Remainder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Remainder.m; sourceTree = "<group>"; };
 		33AFA5051B5211AE00537C29 /* UsingDelegates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsingDelegates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33AFA5091B5211AE00537C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33AFA50A1B5211AE00537C29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -47,7 +50,6 @@
 		33AFA5341B52148700537C29 /* detailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailViewController.h; sourceTree = "<group>"; };
 		33AFA5351B52148700537C29 /* detailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailViewController.m; sourceTree = "<group>"; };
 		33AFA5371B52281C00537C29 /* savingRemainderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = savingRemainderProtocol.h; sourceTree = "<group>"; };
-		33C4163A1B538BD0009EC26D /* remainderCompletionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remainderCompletionProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		335EAB261B5A52C800ED6BF0 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				335EAB231B5A3F4600ED6BF0 /* Remainder.h */,
+				335EAB241B5A3F4600ED6BF0 /* Remainder.m */,
+			);
+			name = Modals;
+			sourceTree = "<group>";
+		};
+		335EAB271B5A52D100ED6BF0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				33AFA5121B5211AE00537C29 /* Main.storyboard */,
+				33AFA5171B5211AE00537C29 /* LaunchScreen.xib */,
+				33AFA5151B5211AE00537C29 /* Images.xcassets */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		335EAB281B5A52D900ED6BF0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				33AFA52E1B52123000537C29 /* mainTableViewController.h */,
+				33AFA52F1B52123000537C29 /* mainTableViewController.m */,
+				33AFA5311B52147000537C29 /* addViewController.h */,
+				33AFA5321B52147000537C29 /* addViewController.m */,
+				33AFA5341B52148700537C29 /* detailViewController.h */,
+				33AFA5351B52148700537C29 /* detailViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		335EAB291B5A530A00ED6BF0 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				33AFA5371B52281C00537C29 /* savingRemainderProtocol.h */,
+				335EAB2A1B5A532300ED6BF0 /* AppDelegates */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		335EAB2A1B5A532300ED6BF0 /* AppDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				33AFA50C1B5211AE00537C29 /* AppDelegate.h */,
+				33AFA50D1B5211AE00537C29 /* AppDelegate.m */,
+			);
+			name = AppDelegates;
+			sourceTree = "<group>";
+		};
 		33AFA4FC1B5211AE00537C29 = {
 			isa = PBXGroup;
 			children = (
@@ -89,19 +141,10 @@
 		33AFA5071B5211AE00537C29 /* UsingDelegates */ = {
 			isa = PBXGroup;
 			children = (
-				33AFA50C1B5211AE00537C29 /* AppDelegate.h */,
-				33AFA50D1B5211AE00537C29 /* AppDelegate.m */,
-				33AFA52E1B52123000537C29 /* mainTableViewController.h */,
-				33AFA52F1B52123000537C29 /* mainTableViewController.m */,
-				33AFA5121B5211AE00537C29 /* Main.storyboard */,
-				33AFA5311B52147000537C29 /* addViewController.h */,
-				33AFA5321B52147000537C29 /* addViewController.m */,
-				33AFA5341B52148700537C29 /* detailViewController.h */,
-				33AFA5351B52148700537C29 /* detailViewController.m */,
-				33AFA5151B5211AE00537C29 /* Images.xcassets */,
-				33AFA5171B5211AE00537C29 /* LaunchScreen.xib */,
-				33AFA5371B52281C00537C29 /* savingRemainderProtocol.h */,
-				33C4163A1B538BD0009EC26D /* remainderCompletionProtocol.h */,
+				335EAB261B5A52C800ED6BF0 /* Modals */,
+				335EAB271B5A52D100ED6BF0 /* Views */,
+				335EAB281B5A52D900ED6BF0 /* Controllers */,
+				335EAB291B5A530A00ED6BF0 /* Delegates */,
 				33AFA5081B5211AE00537C29 /* Supporting Files */,
 			);
 			path = UsingDelegates;
@@ -234,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33AFA50E1B5211AE00537C29 /* AppDelegate.m in Sources */,
+				335EAB251B5A3F4600ED6BF0 /* Remainder.m in Sources */,
 				33AFA5301B52123000537C29 /* mainTableViewController.m in Sources */,
 				33AFA5331B52147000537C29 /* addViewController.m in Sources */,
 				33AFA5361B52148700537C29 /* detailViewController.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "addViewController.h"
 #import "mainTableViewController.h"
+#import "Remainder.h"
 
 @interface addViewController ()
 
@@ -15,25 +16,26 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameTextBox;
 @property (weak, nonatomic) IBOutlet UITextField *dateTextBox;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextBox;
+@property (strong, nonatomic) NSMutableDictionary *remainderEntry;
 
 - (IBAction)CancelTapped:(id)sender;
 - (IBAction)saveTapped:(id)sender;
 
-
 @end
-NSMutableDictionary *tempD;
-@implementation addViewController
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    tempD = [[NSMutableDictionary alloc]init];
-    self.dictArray = [[NSMutableArray alloc]init];
 
-}
+@implementation addViewController
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
+    self.remainderEntry = [[NSMutableDictionary alloc]init];
+    self.dictArray = [[NSMutableArray alloc]init];
+}
+
+-(Remainder*) setUpRemainderData: (NSMutableDictionary *) dictionary
+{
+    return [[Remainder alloc] initRemaniderWithDetails:dictionary];
 }
 
 -(NSMutableDictionary*) createAnRemainderDictionarywithName: (NSString*)name withDate:(NSString*)date withDescription:(NSString*)description andStatus:(NSString*)status
@@ -55,13 +57,13 @@ NSMutableDictionary *tempD;
 - (IBAction)saveTapped:(id)sender
 {
     
-    tempD = [self createAnRemainderDictionarywithName:self.nameTextBox.text withDate:self.dateTextBox.text withDescription:self.
+    self.remainderEntry = [self createAnRemainderDictionarywithName:self.nameTextBox.text withDate:self.dateTextBox.text withDescription:self.
              descriptionTextBox.text andStatus:@"No"];
-//    NSLog(@"tempD :%@", tempD);
-//    
-//    [self.dictArray addObject:tempD];
+    
+   Remainder *remainder =  [self setUpRemainderData:self.remainderEntry];
+    
     NSLog(@"self.dictArray: %@", self.dictArray);
-    [self.savingRemainderDelegate addingNameInDictArray:tempD];
+    [self.savingRemainderDelegate addingNameInDictArray:remainder];
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
