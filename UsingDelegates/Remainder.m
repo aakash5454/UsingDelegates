@@ -13,17 +13,15 @@
 -(instancetype)initRemaniderWithDetails:(NSDictionary*)dictionary
 {
     self = [super init];
-    if (!self)      //self = (self == yes)  !!   (!self)  = (self == NO)  Q: ?????
+    if (!self)   
     {
         return  nil;
     }
-    else
-    {
+    
         _name = dictionary[@"name"];
         _date = dictionary[@"date"];
         _detailDescription = dictionary[@"description"];
         _status = dictionary[@"status"];
-    }
     return self;
 }
 

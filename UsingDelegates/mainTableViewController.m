@@ -13,7 +13,6 @@
 @interface mainTableViewController ()
 @property (nonatomic, strong) NSMutableArray *dictArray;
 @end
-NSIndexPath *ClickedindexPath;
 @implementation mainTableViewController
 
 #pragma mark - Other Methods
@@ -78,7 +77,7 @@ NSIndexPath *ClickedindexPath;
         detailVC.dictArray = self.dictArray;
         detailVC.myIndexPath = indexPath;
 
-        detailVC.remainder = self.remainder;
+        detailVC.remainder = self.dictArray[indexPath.row];//self.remainder;
         detailVC.savingRemainderDelegate = self;  // Q: //Who is delagating who?
     }
     else if ([segue.identifier isEqualToString:@"mainToAddId"])

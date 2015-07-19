@@ -18,5 +18,3 @@
 -(instancetype)initRemaniderWithDetails:(NSDictionary*)dictionary;
 
 @end
-
-#import "Remainder.h"
